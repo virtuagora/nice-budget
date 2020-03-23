@@ -1,0 +1,21 @@
+{% extends 'admin/master.twig' %}
+
+{% block section %}
+	<h1 class="title is-1">Nuevo proyecto</h1>
+	{% if is_state('upload-proposals') %}
+		<h2 class="subtitle is-4">
+			Complete los campos para subir un nuevo proyecto. Luego de la creación, podra asignarle imagenes, archivos y otras configuraciones de la administración.
+		</h2>
+		<hr>
+		{% include 'base/blocks-compact.twig' with blocks %}
+		<hr>
+		<admin-create-project form-url="{{path_for('createProject')}}" :categories="{{categories|json_encode}}" :districts="{{districts|json_encode}}" :project-fields="{{projectFields|json_encode}}">
+			{% include 'base/loading.twig' %}
+		</admin-create-project>
+	{% else %}
+		<div class="notification is-warning">
+			<i class="fas fa-exclamation-triangle fa-fw"></i>&nbsp;
+			<b>Se ha terminado la etapa para crear proyectos!</b>
+		</div>
+	{% endif %}
+{% endblock %}

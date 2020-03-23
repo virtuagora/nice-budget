@@ -1,0 +1,22 @@
+{% if blocks|length > 0 %}
+  {% for theBlock in blocks %}
+    {% if theBlock.picture_name is not null %}
+    <div class="columns is-vcentered">
+    <div class="column is-7">
+      <h1 class="title is-1 is-size-3-touch has-text-primary">{{theBlock.title}}</h1>
+      <div class="content">
+      {{theBlock.markdown|markdown_to_html}}
+      </div>
+    </div>
+    <div class="column is-4 is-offset-1">
+      <img src="/pageblocks/{{theBlock.id}}/imagen" class="image is-centered" alt="">
+    </div>
+    </div>
+    {% else %}
+      <h1 class="title is-1 is-size-3-touch has-text-primary">{{theBlock.title}}</h1>
+      <div class="content">
+      {{theBlock.markdown|markdown_to_html}}
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}

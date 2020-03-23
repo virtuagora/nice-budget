@@ -1,0 +1,56 @@
+{% extends 'admin/master.twig' %}
+
+{% block section %}
+	<h1 class="title is-1">Bloques de texto
+	</h1>
+	<h2 class="subtitle is-4">
+		Bloques de texto son formas de constriur "bloques" de texto personalizado en la plataforma.
+	</h2>
+	<hr>
+    <div class="buttons">
+    <a href="{{path_for('showCreatePageblock')}}" class="button is-primary"><i class="fas fa-plus"></i>&nbsp;Crear bloque</a>
+    </div>
+	{% for path,blockgroup in blocks %}
+		<h3 class="subtitle">Bloques para el path:
+			{{path}}</h3>
+		<table class="table is-fullwidth">
+			<thead>
+				<tr>
+					<th>
+						Titulo del bloque</th>
+					<th width="30px" class="has-text-centered">
+						Imagen
+					</th>
+					<th width="30px" class="has-text-centered">
+						Orden
+					</th>
+					<th width="200px">
+						Acciones
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for theBlock in blockgroup %}
+					<tr>
+						<td>
+							<p><i class="fas fa-cube fa-lg"></i>&nbsp;
+              {% if theBlock.hidden %}<span class="tag is-black">Oculto</span>&nbsp;&nbsp;{% endif %}{{theBlock.title}}</p>
+						</td>
+						<td class="has-text-centered">
+							{% if theBlock.picture_name is not null %}
+								<i class="fas fa-image"></i>
+							{% endif %}
+						</td>
+						<td class="has-text-centered">
+							{{theBlock.order}}
+						</td>
+            <td>
+            <p class="is-size-7"><a href="{{path_for('showEditPageblock',{'blo': theBlock.id })}}"><i class="fas fa-edit"></i>&nbsp;Editar</a></p>
+            <p class="is-size-7"><a href="{{path_for('showUploadImagePageblock',{'blo': theBlock.id })}}"><i class="fas fa-image"></i>&nbsp;Establecer imagen</a></p>
+            </td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endfor %}
+{% endblock %}

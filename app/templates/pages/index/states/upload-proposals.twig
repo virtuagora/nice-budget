@@ -1,0 +1,71 @@
+{% if subject.id is null %}
+	<section class="section">
+		<div class="container">
+			<img src="{{asset('img/home/upload-proposals.png')}}" class="image is-centered spotlight-pitcure" alt="">
+			{# <p class="has-text-centered has-text-primary"><i class="fas fa-file-upload fa-5x fa-fw"></i></p> #}
+			{# <br> #}
+			{% if proposals_available() %}
+				<h1 class="title has-text-centered is-2 is-size-3-touch has-text-primary">¡Subí tú proyecto de forma ONLINE!</h1>
+				<h1 class="subtitle has-text-centered is-3 is-size-5-touch has-text-dark">¡Tus proyectos pueden quedar para la votación del presupuesto participativo de este año!</h1>
+				<div class="buttons is-centered ">
+					<a href="{{path_for('showLogin')}}" class="button is-primary is-medium is-rounded">
+						<i class="fas fa-plus-circle fa-fw fa-lg"></i>&nbsp;Subí tu proyecto</a>
+				</div>
+			{% else %}
+				<h1 class="title has-text-centered is-2 is-size-3-touch has-text-primary">¡El formulario ha cerrado! ¡Miralos en el catalogo!</h1>
+				<h1 class="subtitle has-text-centered is-4 is-size-5-touch has-text-dark">Pronto conocerás que proyectos formarán parte de la votación que comienza el
+					{{options()['vote-launch']|date("d/m/Y")}}</h1>
+				<div class="buttons is-centered ">
+					<a href="{{path_for('showCatalogo')}}" class="button is-primary is-medium is-outlined is-rounded">
+						<i class="fas fa-book-reader fa-fw fa-lg"></i>&nbsp;Ir al catálogo</a>
+				</div>
+			{% endif %}
+		</div>
+	</section>
+{% else %}
+	{% if 'verified' in subject.roles %}
+		{# If the user is verified #}
+		<section class="section">
+			<div class="container">
+				<h1 class="title is-3 is-size-4-touch has-text-primary">
+					<i class="fas fa-sticky-note"></i>&nbsp;Mis proyectos subidos</h1>
+				<h1 class="subtitle is-4 is-size-5-touch">Estos son álgunos de tus proyectos subidos para el presupuesto participativo del año {{options()['current-chapter']}}</h1>
+				<project-carousel url="{{path_for('retrieveProject',{},{"chapter": options()['current-chapter'], "author": subject.extra.user_id})}}" :timeout="7400" author="{{subject.extra.user_id}}">
+					{% include 'base/loading.twig' %}
+				</project-carousel>
+				{% if proposals_available() %}
+					<br>
+					<a class="button is-primary is-rounded" href="{{path_for('showUserPanelCreateProject')}}">
+						<i class="fas fa-plus-circle fa-fw fa-lg"></i>&nbsp;Subí tu propuesta</a>
+				{% endif %}
+			</div>
+		</section>
+	{% else %}
+		{# <div class="hero is-dark is-small">
+		<div class="hero-body">
+			<div class="container has-text-centered">
+			<h1 class="subtitle is-3 is-marginless">No se encuentra autorizado para participar del presupuesto</h1>
+      <p><b>¿Cree que es un error?</b> Contacte a los administradores enviando un correo a <a class="has-text-warning" href="mailto:{{options()['email-contact']}}">{{options()['email-contact']}}</a></p>
+      </div>
+		</div>
+		</div> #}
+	{% endif %}
+	<hr class="is-marginless">
+{% endif %}
+	<hr class="is-marginless">
+	<section class="section">
+		<div class="container">
+			<h1 class="title has-text-centered has-text-primary is-2 is-size-4-touch">¡Conocé algunos proyectos ya cargados!</h1>
+			<project-carousel url="{{path_for('retrieveProject',{},{"chapter": options()['current-chapter']})}}" catalog-url="{{path_for('showCatalogo')}}" :timeout="6900">
+				{% include 'base/loading.twig' %}
+			</project-carousel>
+			<br>
+			<div class="buttons is-centered ">
+					<a href="{{path_for('showCatalogo')}}" class="button is-primary is-medium is-outlined is-rounded">
+						<i class="fas fa-book-reader fa-fw fa-lg"></i>&nbsp;Explorá mas proyectos</a>
+				</div>
+		</div>
+	</section>
+	{% if blocks|length > 0 %}
+	<hr class="is-marginless">
+	{% endif %}

@@ -1,0 +1,12 @@
+{% extends 'admin/master.twig' %}
+
+{% block section %}
+	<h1 class="title is-1">Editar bloque de texto</h1>
+	<h2 class="subtitle is-4">
+		Edite el bloque. Tambien puede eliminarlo si quisiera.
+	</h2>
+	<hr>
+  <pageblock-edit form-url="{{path_for('updatePageblock',{'blo': block.id})}}" delete-url="{{path_for('deletePageblock',{'blo': block.id})}}" redirect-url="{{path_for('showPageblocks')}}" :previous-block="{{block|json_encode}}">
+    {% include 'base/loading.twig' %}
+  </pageblock-edit>
+{% endblock %}

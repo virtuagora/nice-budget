@@ -1,0 +1,6 @@
+.pageblock{
+  border-bottom: 1px solid #CACACA;
+  &:last-child{
+    border-bottom:none
+  }
+}

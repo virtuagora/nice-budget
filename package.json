@@ -1,0 +1,67 @@
+{
+  "name": "nice-budget",
+  "version": "1.0.0",
+  "description": "This repository is an example of one of the upcoming features for Virtuagora 2.0. Its a portal that support a whole public budget process were citizens can contribute with projects, go through a voting period, and get the results. Currently only available in Spanish. Collaborative project with the participation of SantaLab and Democracia en Red.",
+  "author": "virtuagora",
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "http": "php -S 0.0.0.0:8000 -t public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virtuagora/nice-budget.git"
+  },
+  "keywords": [
+    "virtuagora",
+    "participation",
+    "open",
+    "goverment",
+    "budget",
+    "participatory",
+    "participation"
+  ],
+  "bugs": {
+    "url": "https://github.com/virtuagora/nice-budget/issues"
+  },
+  "dependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@chenfengyuan/vue-qrcode": "^1.0.2",
+    "animate.css": "^3.7.0",
+    "axios": "^0.18.0",
+    "buefy": "^0.8.10",
+    "bulma": "^0.7.4",
+    "chart.js": "^2.7.2",
+    "cross-env": "^5.2.0",
+    "facebook-sdk-promise": "^1.2.1",
+    "file-loader": "^3.0.1",
+    "laravel-mix": "^4.0.15",
+    "lodash": "^4.17.10",
+    "resolve-url-loader": "2.3.1",
+    "sass": "^1.25.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "vee-validate": "^2.1.7",
+    "vue": "^2.6.6",
+    "vue-avatar": "^2.1.6",
+    "vue-carousel": "^0.6.14",
+    "vue-chartjs": "^3.4.0",
+    "vue-infinite-loading": "^2.3.1",
+    "vue-masonry-css": "^1.0.3",
+    "vue-recaptcha": "^1.1.0",
+    "vue-router": "^3.1.5",
+    "vue-slider-component": "^2.7.5",
+    "vue-template-compiler": "^2.5.17",
+    "vue-textarea-autosize": "^1.0.4",
+    "vue-the-mask": "^0.11.1",
+    "vuedraggable": "^2.16.0",
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.2"
+  }
+}

@@ -1,0 +1,19 @@
+{% set votable = ( is_state('vote') and vote_available() ) ? 'true' : 'false'  %}
+{% extends 'admin/master.twig' %}
+
+{% block section %}
+  <h1 class="title is-1">Consultar padron
+  </h1>
+<h2 class="subtitle is-4">
+  Consulte el padron a partir de un numero de identificación. Desde aqui puede marcar la participacion de los ciudadanos.
+</h2>
+<div class="message is-warning">
+  <div class="message-body">
+   <i class="fas fa-exclamation-circle"></i>&nbsp;<b>NOTA:</b> Si maneja otro padron (Ej: En papel), mantenga el padrón sincronizado con el sistema para evitar doble voto (presencial y digital, si es que ha habilitado el voto) 
+  </div>
+</div>
+<hr>
+<sync-padron url="{{path_for('getCiudadanoPadron')}}" url-add-citizen="{{path_for('runAddCitizen')}}" url-participacion="{{path_for('runParticipacionPadron')}}" url-public-vote="{{base_url() ~ path_for('showUrna')}}" :votable="{{votable}}">
+  {% include 'base/loading.twig' %}
+</sync-padron>
+{% endblock %}

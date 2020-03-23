@@ -1,0 +1,15 @@
+<section class="section">
+  <div class="container">
+		<h1 class="title has-text-centered has-text-primary is-2 is-size-4-touch">&nbsp;¡Algunos proyectos que podrás votar!</h1>
+    <br>
+    <exhibit url="{{path_for('retrieveProject')}}" :force-feasible="true" :random="true">
+        {% include 'base/loading.twig' %}
+    </exhibit>
+    <br>
+   <div class="buttons is-centered ">
+					<a href="{{path_for('showCatalogo')}}" class="button is-primary is-medium is-outlined is-rounded">
+						<i class="fas fa-book-reader fa-fw fa-lg"></i>&nbsp;Explorá mas proyectos</a>
+				</div>
+  </div>
+</section>
+	<hr class="is-marginless">

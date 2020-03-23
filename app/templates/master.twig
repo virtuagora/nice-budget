@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block title %}Inicio{% endblock %}
+      - {{options()['budget-title']}}
+    </title>
+    {% block opengraph %}
+      <!-- Social Media Metatags! -->
+      {% if options()['enable-facebook-sharer'] %}
+        <meta property="fb:app_id" content="{{options()['facebook-app-id']}}"/>
+      {% endif %}
+      <meta property="og:type" content="article"/>
+      <meta name="description" content="{{options()['budget-description']}}">
+      <meta property="og:title" content="{{options()['budget-title']}}">
+      <meta property="og:description" content="{{options()['budget-description']}}">
+      <meta property="og:image" content="{{asset('img/sharer.jpg')}}">
+      <meta property="og:url" content="{{base_url()}}">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="{{options()['budget-title']}}">
+      <meta name="twitter:site" content="{{options()['social-twitter']}}">
+      <meta name="twitter:creator" content="{{options()['social-twitter']}}">
+      <meta name="twitter:description" content="{{options()['budget-description']}}">
+      <meta name="twitter:image" content="{{asset('img/sharer.jpg')}}">
+    {% endblock %}
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon-16x16.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('favicon-96x96.png')}}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/nice-budget.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.css" integrity="sha256-PtBWX+v2TI0iuYI3rZrQft5kfd3ZkdPd8iVMZoE1rxE=" crossorigin="anonymous" />
+    {% if options()['enable-google-analytics'] %}
+    <!--[if lt IE 9]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{options()['google-analytics-id']}}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', {{options()['google-analytics-id']}});
+    </script>
+    {% endif %}
+    {% block scriptshead %}{% endblock %}
+  </head>
+  <body {% if body_class is defined %} class='{{ body_class }}' {% endif %}>
+    <div id="vue" class="content-master">
+      {% if show_navbar == true %}
+        {% include'base/navbar.twig' %}
+      {% endif %}
+      {% block body %}{% endblock %}
+    </div>
+    {% if show_footer == true %}
+      {% include'base/footer.twig'%}
+    {% endif %}
+    <script type="text/javascript" src="{{asset('js/manifest.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/vendor.js')}}"></script>
+    {% if subject.id  and 'admin' in subject.roles %}
+    <script type="text/javascript" src="{{asset('js/nice-budget-admin.js')}}"></script>
+    {% else %}
+    <script type="text/javascript" src="{{asset('js/nice-budget.js')}}"></script>
+    {% endif %}
+    {% block javascripts %}{% endblock %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+
+        // Get all "navbar-burger" elements
+        var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+
+          // Add a click event on each of them
+          $navbarBurgers.forEach(function ($el) {
+            $el.addEventListener('click', function () {
+
+              // Get the target from the "data-target" attribute
+              var target = $el.dataset.target;
+              var $target = document.getElementById(target);
+
+              // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+              $el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+
+            });
+          });
+        }
+
+      });
+    </script>
+  </body>
+</html>

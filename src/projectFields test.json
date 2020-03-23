@@ -1,0 +1,23 @@
+{
+  "problem": {
+    "type": "string",
+    "name": "Definición de la situación problemática ",
+    "descripcion": "¿Cual es la problematica que atiende el proyecto?. Tenes un máximo de 1500 caracteres ",
+    "minLength": 1,
+    "maxLength": 2000
+  },
+  "benefit_population": {
+    "type": "string",
+    "name": "Beneficio a la comunidad",
+    "descripcion": "Beneficio a la comunidad",
+    "minLength": 1,
+    "maxLength": 2000
+  },
+  "community_contributions": {
+    "name": "Contribucion a la comunidad",
+    "descripcion": "Beneficio a la comunidad",
+    "minLength": 1,
+    "maxLength": 2000
+  }
+}
+

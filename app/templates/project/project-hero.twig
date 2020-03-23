@@ -1,0 +1,112 @@
+<section id="projectOverview" class="hero is-bold is-medium is-primary {{hero_classes}}" style="{{hero_styles}}">
+    <div class="hero-body">
+      {# <img src="/assets/img/icons/mark-{{project.type}}.svg" class="bookmark" alt=""> #}
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column">
+            <div class="field is-grouped is-grouped-multiline">
+              <div class="control">
+                <div class="tags has-addons">
+                  <span class="tag is-dark is-medium">Distrito</span>
+                  <span class="tag is-white is-medium">
+                    {{project.district.name|capitalize}}
+                  </span>
+                </div>
+              </div>
+              {% if (is_state('pre-vote') or is_state('vote') or is_state('pre-results') or is_state('results')) and project.feasible is defined %}
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark is-medium">
+                    {% if project.feasible %}
+                      {% if project.selected == true and show_results() %}
+                        <i class="fas fa-star has-text-warning"></i>
+                      {% else %}
+                        <i class="fas fa-check has-text-success"></i>
+                      {% endif %}
+                    {% else %}
+                      <i class="fas fa-times has-text-danger"></i>
+                    {% endif %}
+                    </span>
+                    {% if project.feasible %}
+                    {% if project.selected == true and show_results() %}
+                        <span class="tag is-warning is-medium">
+                          ¡Seleccionado!
+                        </span>
+                      {% else %}
+                        <span class="tag is-success is-medium">
+                          Factible
+                        </span>
+                      {% endif %}
+                    {% else %}
+                      <span class="tag is-danger is-medium">
+                      No factible
+                    </span>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            <h1 class="title shadow-text has-text-white is-1">{{project.title}}</h1>
+            {% if project.organization_name %}
+              <h1 class="subtitle shadow-text has-text-white is-6">
+                Presentado por:
+                {{project.organization_name}}</h1>
+            {% else %}
+              <h1 class="subtitle shadow-text has-text-white is-6">
+                Presentado por:
+                {{project.author_names}}
+                {{project.author_surnames}}</h1>
+            {% endif %}
+            {% if (vote_available() and subject.id is null) 
+              or(vote_available()and subject.id and citizen()is not null and citizen().voted == false) %}
+              {% if citizen()is not null and citizen().voted == false %}
+                <a href="{{path_for('showVoting')}}" class="button is-white is-large is-rounded">
+                  <i class="fas fa-paper-plane fa-fw"></i>¡Votá este proyecto!</a>
+              {% endif %}
+              {% if subject.id is null %}
+                <a href="{{path_for('showLogin')}}" class="button is-white is-large is-rounded">
+                  <i class="fas fa-sign-in-alt fa-fw"></i>¡Entrá y votá!</a>
+              {% endif %}
+            {% endif %}
+          </div>
+          <div class="column is-3 is-offset-1 is-hidden-touch">
+            <div class="notification is-white has-text-centered">
+              <h1 class="title is-1 has-text-dark">
+                $
+                {{project.budget_total|replace({".00" : ""})|number_format(0, ',', '.')}}
+              </h1>
+            </div>
+            <div class="notification is-white has-text-centered">
+              <h1 class="title is-4 has-text-dark">
+                <i class="{{project.category.fontawesome_icon}}"></i>&nbsp;{{project.category.name}}
+              </h1>
+            </div>
+            {# {% if project.selected and show_results() %}
+             <div class="notification is-warning has-text-centered">
+              <h1 class="title is-4">
+                <img src="/assets/img/icons/medal-dark.svg" alt="" class="image is-inline" style="width: 25px;margin-bottom: -8px;">
+                ¡Seleccionado!
+              </h1>
+            </div>
+            {% endif %} #}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <nav class="tabs is-boxed">
+      <div class="container">
+          <ul>
+            <li class="{{activeTab == 0 ? 'is-active ' : null }}is-hidden-touch"><a href="{{path_for('showProject',{'pro': project.id})}}"><i class="fas fa-info fa-lg"></i>&nbsp;Información</a></li>
+            <li class="{{activeTab == 0 ? 'is-active ' : null }}is-hidden-desktop"><a href="{{path_for('showProject',{'pro': project.id})}}"><i class="fas fa-info fa-lg"></i></a></li>
+            {% if projectFields.enable_budget and projectFields.enable_detailed_budget %}
+            <li class="{{activeTab == 1 ? 'is-active ' : null }}is-hidden-touch"><a href="{{path_for('showProjectBudget',{'pro': project.id})}}"><i class="fas fa-dollar-sign fa-lg"></i>&nbsp;Presupuesto</a></li>
+            <li class="{{activeTab == 1 ? 'is-active ' : null }}is-hidden-desktop"><a href="{{path_for('showProjectBudget',{'pro': project.id})}}"><i class="fas fa-dollar-sign fa-lg"></i></a></li>
+            {% endif %}
+            <li class="{{activeTab == 2 ? 'is-active ' : null }}is-hidden-touch"><a href="{{path_for('showProjectJournal',{'pro': project.id})}}"><i class="fas fa-history fa-lg"></i>&nbsp;Historial</a></li>
+            <li class="{{activeTab == 2 ? 'is-active ' : null }}is-hidden-desktop"><a href="{{path_for('showProjectJournal',{'pro': project.id})}}"><i class="fas fa-history fa-lg"></i></a></li>
+          </ul>
+      </div>
+      </nav>
+  </div>
+  </section>

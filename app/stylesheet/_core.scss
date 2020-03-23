@@ -1,0 +1,48 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-master {
+  flex: 1 0 auto;
+}
+
+// ================================================
+// GLOBALS
+// ================================================
+
+.textarea,
+input.input {
+  background-color: rgb(252, 252, 252); // border-radius: 0;
+  box-shadow: none; // border-radius: 0;
+  // padding-left: 10px; // padding-right: 0; // background-color: rgb(252, 252, 252);
+  // border-bottom: 1px solid $primary;
+  // border-left: 3px solid $primary;
+  // border-top-left-radius: 0;
+  // border-bottom-right-radius: 0;
+  // border-color: $black;
+  &:focus {
+    box-shadow: none; // border-bottom: 1px solid $primary;
+  }
+}
+
+// ================================================
+// NAVBAR
+// ================================================
+
+.navbar.is-white .navbar-brand > a.navbar-item:hover, .navbar.is-white .navbar-brand > a.navbar-item.is-active, .navbar.is-white .navbar-brand .navbar-link:hover, .navbar.is-white .navbar-brand .navbar-link.is-active{
+  background-color: transparent;
+}
+
+// ================================================
+// FOOTER
+// ================================================
+.logos-footer {
+  height: 70px;
+  margin: 0 auto;
+}

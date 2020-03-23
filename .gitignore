@@ -1,0 +1,16 @@
+/vendor/
+/var/*
+/node_modules/*
+/.sass-cache/*
+composer.phar
+/node_modules/
+app/settings.php
+app/components/ingenia/admin
+
+
+# exception to the rule
+!/var/logs/.gitkeep
+!/var/cache/.gitkeep
+!/var/files/datasets/.gitkeep
+!/var/files/documents/.gitkeep
+!/var/files/project/.gitkeep

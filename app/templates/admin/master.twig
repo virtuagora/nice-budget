@@ -1,0 +1,28 @@
+{% set show_footer = true %}
+{% set show_navbar = true %}
+{# set body_class = '' #}
+
+{% extends 'master.twig' %}
+
+{% block title %}Panel de admin
+{% endblock %}
+{% block body %}
+	<div class="hero is-small is-primary">
+		<div class="hero-body has-text-centered">
+			<h1 class="subtitle is-4">Panel de administración</h1>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="columns">
+				<div class="column is-2">
+					{# <h1 class="subtitle is-4">Menu de opciones</h1> #}
+					{% include 'admin/side-menu.twig' %}
+				</div>
+				<div class="column is-offset-1">
+					{% block section %}{% endblock %}
+				</div>
+			</div>
+		</div>
+  </div>
+{% endblock %}

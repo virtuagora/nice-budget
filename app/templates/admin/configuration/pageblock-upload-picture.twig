@@ -1,0 +1,12 @@
+{% extends 'admin/master.twig' %}
+
+{% block section %}
+	<h1 class="title is-1">Subir imagen para bloque de texto</h1>
+	<h2 class="subtitle is-4">
+		Puede Portada que se verá en el 
+	</h2>
+	<hr>
+ <pageblock-upload-image form-url="{{path_for('runUploadImagePageblock',{'blo':block.id})}}" :block="{{block|json_encode}}">
+    {% include 'base/loading.twig' %}
+  </pageblock-upload-image>
+{% endblock %}

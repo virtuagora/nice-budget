@@ -1,0 +1,179 @@
+.item-mosaic {
+  margin-bottom:10px;
+  // @include mobile {
+  //   width: 100%;
+  //   margin-bottom: 10px;
+  //   // margin: 0 0.5% 10px;
+  // }
+  // @include tablet {
+  //   width: 50%;
+  //   margin-bottom: 10px;
+  //   // margin: 0 0.5% 10px;
+  // }
+  // @include desktop {
+  //   width: 25%;
+  //   margin-bottom: 10px;
+  //   // margin: 0 0.5% 10px;
+  // }
+  // @include widescreen {
+  //   width: 16.6666666667%;
+  //   margin-bottom: 10px;
+  //   // margin: 0 0.5% 10px;
+  // }
+  // @include fullhd {
+  //   width: 15%;
+  //   margin-bottom: 10px;
+  //   // margin: 0 0.5% 10px;
+  // }
+  // .gutter-mosaic{
+  //   margin: 10px;
+  // }  
+  // .catalog-item {
+  //   padding: 10px;
+  //   @include mobile {
+  //     padding-top: 80px;
+  //   }
+  //   @include tablet {
+  //     padding-top: 80px;
+  //   }
+  //   @include desktop {
+  //     padding-top: 80px;
+  //   }
+  //   &.with-image {
+  //     @include mobile {
+  //       padding-top: 30%;
+  //     }
+  //     @include tablet {
+  //       padding-top: 40%;
+  //     }
+  //     @include desktop {
+  //       padding-top: 50%;
+  //     }
+  //   }
+    .catalog-project {
+      background-color: $primary;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+      box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+      display: block;
+      margin: 0 5px;
+      color: #fff;
+      position: relative;
+      .box-content {
+        border-radius: 5px;
+        // height: 100%;
+        position: relative;
+        @include mobile {
+          padding-top: 80px;
+        }
+        @include tablet {
+          padding-top: 80px;
+        }
+        @include desktop {
+          padding-top: 80px;
+        }
+        &.with-image {
+          @include mobile {
+            padding-top: 50%;
+          }
+          @include tablet {
+            padding-top: 60%;
+          }
+          @include desktop {
+            padding-top: 65%;
+          }
+        }
+        .to-bottom {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          justify-content: flex-end;
+          align-content: stretch;
+          align-items: stretch;
+          padding: 10px
+        }
+      }
+      .title,
+      .subtitle {
+        color: #fff;
+        text-shadow: -1px 1px 3px #00000096;
+        line-height:normal;
+      }
+      p {
+        text-shadow: -1px 1px 3px #00000080;
+        font-size: 0.9rem;
+        line-height: normal;
+      }
+      .icon-category {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        z-index: 10;
+      }
+      &.and-more{
+        background-image: url('/assets/img/pp-institucional2.png');
+        background-position: center center;
+        background-size: contain;
+      }
+      &.has-image-background {
+        background-position: center center;
+        background-size: cover;
+        .box-content {
+          background: linear-gradient(15deg, rgba($primary, 0.9) 20%, rgba($primary, 0.2) 75%)
+        }
+      }
+  }
+}
+
+.box-project {
+  background-color: $primary;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  display: block;
+  margin: 0 5px;
+  color: #fff;
+  position: relative;
+  height: 225px;
+  .box-content {
+    border-radius: 5px;
+    height: 100%;
+    position: relative;
+    .to-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 1rem;
+    }
+  }
+  .title,
+  .subtitle {
+    color: #fff;
+    text-shadow: -1px 1px 3px #00000096;
+    line-height:normal;
+  }
+  p {
+    text-shadow: -1px 1px 3px #00000080;
+    font-size: 0.9rem;
+    line-height: normal;
+  }
+  .icon-category {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 10;
+  }
+  &.and-more{
+    background-image: url('/assets/img/pp-institucional2.png');
+    background-position: center center;
+    background-size: contain;
+  }
+  &.has-image-background {
+    background-position: center center;
+    background-size: cover;
+    .box-content {
+      background: linear-gradient(15deg, rgba($primary, 0.9) 20%, rgba($primary, 0.2) 95%)
+    }
+  }
+}
+

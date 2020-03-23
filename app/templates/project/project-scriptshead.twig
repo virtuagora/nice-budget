@@ -1,0 +1,33 @@
+{% if options()['enable-facebook-sharer'] %}
+  <script>
+    var shareOnFacebook = function () {
+      FB.ui({
+        method: 'share',
+        mobile_iframe: true,
+        href: '{{base_url() ~ path_for("showProject",{pro: project.id})}}',
+        hashtag: '#PPSanLorenzo',
+        quote: '¡El proyecto "{{project.title}}" está participando del presupuesto participativo {{options()["budget-title"]}}! ¡Ingresá en la página, registrate y votalo junto a otros proyectos que participan!',
+        display: 'popup'
+      }, function (response) {}); 
+    }
+
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '{{options(['facebook-app-id'])}}', cookie: true, // This is important, it's not enabled by default
+        version: 'v3.1'
+      });
+    };
+
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+{% endif %}

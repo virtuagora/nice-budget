@@ -1,0 +1,102 @@
+{% set show_navbar = true %}
+{% set show_footer = true %}
+{# set body_class = '' #}
+
+{% extends 'master.twig' %}
+
+{% block body %}
+    <section class="hero is-bold is-medium is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-vcentered">
+            <div class="column is-8">
+            {% include 'pages/index/hero/message.twig' %}
+            {% if options()['show-admin-notification'] == 'true' %}
+              <div class="message is-warning">
+                <div class="message-body">
+                <i class="fas fa-exclamation-circle"></i>&nbsp;{{options()['admin-message']}}
+                </div>
+              </div>
+            {% endif %}
+              <div class="buttons">
+                {% include 'pages/index/hero/buttons.twig' %}
+              </div>
+            </div>
+            <div class="column is-3 is-offset-1 is-hidden-touch">
+            <img src="{{asset('img/custom/logo-white.svg')}}" class="image is-centered">
+            </div>
+            {# {% if is_state('pre-vote') or is_state('vote') %}
+            <div class="column">
+              <div class="notification is-primary" style="padding:7px; margin-bottom:8px;">
+                <p class="has-text-centered is-500 is-size-7">¡Descubrí donde y cuando nos podés encontrar en tú distrito!</p>
+              </div>
+              <calendar-index :calendar="{{options().calendar}}" :show-more="true" :small="true">
+                  {% include 'base/loading.twig' %}
+              </calendar-index>
+            </div>
+            {% endif %} #}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="hero is-medium is-bold is-primary is-hidden">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            {% if is_state('pre-vote') or is_state('vote') %}
+            <div class="column is-8">
+            <img src="{{asset('img/custom/logo-white.svg')}}" width="200" class="image">
+            {% else %}  
+            <div class="column has-text-centered">
+            <img src="{{asset('img/custom/logo-white.svg')}}" width="200" class="image is-centered">
+            {% endif %}
+            {% include'pages/index/hero/message.twig' %}
+            {% if options()['show-admin-notification'] == 'true' %}
+              <div class="message is-info">
+                <div class="message-body">
+                <i class="fas fa-exclamation-circle"></i>&nbsp;{{options()['admin-message']}}
+                </div>
+              </div>
+            {% endif %}
+            {% if is_state('pre-vote') or is_state('vote') %}
+              <div class="buttons">
+                {% include'pages/index/hero/buttons.twig' %}
+              </div>
+            {% else %}  
+              <div class="buttons is-centered">
+                {% include'pages/index/hero/buttons.twig' %}
+              </div>
+            {% endif %}
+            </div>
+            {% if is_state('pre-vote') or is_state('vote') %}
+            <div class="column">
+              <div class="notification is-primary" style="padding:7px; margin-bottom:8px;">
+                <p class="has-text-centered is-500 is-size-7">¡Descubrí donde y cuando nos podés encontrar en tú distrito!</p>
+              </div>
+              <calendar-index :calendar="{{options().calendar}}" :show-more="true" :small="true">
+                  {% include 'base/loading.twig' %}
+              </calendar-index>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+  {% if is_state('pre-upload-proposals') %}
+    {% include'pages/index/states/pre-upload-proposals.twig'%}
+  {% elseif is_state('upload-proposals') %}
+    {% include'pages/index/states/upload-proposals.twig'%}
+  {% elseif is_state('pre-vote') %}
+    {% include'pages/index/states/pre-vote.twig'%}
+  {% elseif is_state('vote') %}
+    {% include'pages/index/states/vote.twig'%}
+  {% elseif is_state('pre-results') %}
+    {% include'pages/index/states/pre-results.twig'%}
+  {% elseif is_state('results') %}
+    {% include'pages/index/states/results.twig'%}
+  {% endif %}
+	{% include 'base/blocks.twig' with blocks %}
+
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

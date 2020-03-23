@@ -1,0 +1,23 @@
+<!-- Social Media Metatags! -->
+{% if options()['enable-facebook-sharer'] %}
+	<meta property="fb:app_id" content="{{options()['facebook-app-id']}}"/>
+{% endif %}
+<meta property="og:type" content="article"/>
+<meta name="description" content="El objetivo del proyecto: {{project.objective|length > 250 ? project.objective|slice(0, 250) ~ '...' : project.objective}}">
+<meta property="og:title" content="{{project.title}} - {{options()['budget-title']}}">
+<meta property="og:description" content="El objetivo del proyecto: {{project.objective|length > 250 ? project.objective|slice(0, 250) ~ '...' : project.objective}}">
+{% if project.picture_name is not null %}
+	<meta property="og:image" content="{{base_url() ~ path_for("showProjectPicture",{pro: project.id})}}">
+	<meta property="og:image:width" content="1024">
+	<meta property="og:image:height" content="682">
+{% else %}
+	<meta property="og:image" content="{{base_url() ~ asset('img/sharer.jpg') }}">
+	<meta property="og:image:width" content="800">
+	<meta property="og:image:height" content="565">
+{% endif %}
+<meta property="og:url" content="{{base_url() ~ path_for("showProject",{pro: project.id})}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{project.title}} - {{options()['budget-title']}}">
+<meta name="twitter:site" content="{{options()['social-twitter']}}">
+<meta name="twitter:creator" content="{{options()['social-twitter']}}">
+<meta name="twitter:description" content="El objetivo del proyecto: {{project.objective|length > 250 ? project.objective|slice(0, 250) ~ '...' : project.objective}}">

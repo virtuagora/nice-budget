@@ -1,0 +1,13 @@
+{% extends 'admin/master.twig' %}
+
+{% block section %}
+	<h1 class="title is-1">Crear bloque de texto</h1>
+	<h2 class="subtitle is-4">
+		Aquí puede crear el bloque de texto para la plataforma.
+	</h2>
+	<hr>
+  <pageblock-create form-url="{{path_for('createPageblock')}}">
+    {% include 'base/loading.twig' %}
+  </pageblock-create>
+{% endblock %}
+

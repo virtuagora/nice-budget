@@ -1,0 +1,23 @@
+{% set editable = ( is_state('upload-proposals') and proposals_available() ) ? 'true' : 'false'  %}
+{% extends 'user-panel/master.twig' %}
+
+{% block section %}
+	<h1 class="title is-1">Nuevo proyecto</h1>
+    {% if is_state('upload-proposals') and proposals_available() %}
+    <h2 class="subtitle is-5">
+        Complete los campos para subir un nuevo proyecto. Luego de la creación, podras Portada y archivos.
+    </h2>
+    {% if blocks|length > 0 %}
+    <hr>
+        {% include 'base/blocks-compact.twig' with blocks %}
+    <hr>
+    {% endif %}
+    <user-panel-create-project form-url="{{path_for('createProject')}}" :categories="{{categories|json_encode}}" :districts="{{districts|json_encode}}" :project-fields="{{projectFields|json_encode}}" :user="{{user|json_encode}}" :editable="{{editable}}">
+        {% include 'base/loading.twig' %}
+    </user-panel-create-project>
+    {% else %}
+    <div class="notification is-warning">
+        <i class="fas fa-exclamation-triangle fa-fw"></i>&nbsp; <b>¡El formulario para crear proyectos no se encuentra disponible!</b>
+    </div>
+    {% endif %}
+{% endblock %}

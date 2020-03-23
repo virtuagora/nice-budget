@@ -1,0 +1,87 @@
+<div class="column is-12-mobile is-3-desktop is-4-tablet is-offset-1-desktop">
+			{% if project.author_id is not null and project.author.id == subject.extra.user_id and is_state('upload-proposals') and proposals_available() %}
+	<div class="card">
+		<div class="card-content">
+				<div class="buttons">
+					<a href="{{path_for('showUserPanelUpdateProject', {'pro': project.id})}}" class="button is-primary is-fullwidth is-inverted">
+						<i class="fas fa-edit"></i>&nbsp;Editar mí propuesta</a>
+					<a href="{{path_for('showUserPanelProjectFiles', {'pro': project.id})}}" class="button is-primary is-fullwidth is-inverted">
+						<i class="fas fa-upload"></i>&nbsp;Subir un archivo</a>
+					<a href="{{path_for('showUserPanelProjectImagen', {'pro': project.id})}}" class="button is-primary is-fullwidth is-inverted">
+						<i class="fas fa-image"></i>&nbsp;Cambiar imagen</a>
+				</div>
+		</div>
+	</div>
+		<br>
+			{% endif %}
+			{% if 'admin' in subject.roles %}
+	<div class="card">
+		<div class="card-content">
+				<div class="buttons">
+					<a href="{{path_for('showAdminUpdateProject', {'pro': project.id})}}" class="button is-primary is-fullwidth is-inverted">
+						<i class="fas fa-edit"></i>&nbsp;Editar propuesta</a>
+					<a href="{{path_for('showAdminUpdateProjectFeasibility', {'pro': project.id})}}" class="button is-primary is-fullwidth is-inverted ">
+						<i class="fas fa-clipboard-check"></i>&nbsp;Asignar factibilidad</a>
+					<a href="{{path_for('showAdminProjectFiles', {'pro': project.id})}}" class="button is-primary is-fullwidth is-inverted">
+						<i class="fas fa-upload"></i>&nbsp;Subir archivos</a>
+					<a href="{{path_for('showAdminProjectImagen', {'pro': project.id})}}" class="button is-primary is-fullwidth is-inverted">
+						<i class="fas fa-image"></i>&nbsp;Cambiar imagen</a>
+				</div>
+		</div>
+	</div>
+		<br>
+			{% endif %}
+	{% if project.picture_name %}
+		<img src="{{path_for('showProjectPicture',{'pro': project.id})}}" class="image" style="border-radius:5px;" alt="">
+		<br>
+	{% endif %}
+	{% if project.code %}
+		<div class="notification is-dark has-text-centered">
+			<div class="is-clearfix">
+				<h1 class="subtitle is-5">Código</h1>
+				<h1 class="title is-1">{{project.code}}</h1>
+			</div>
+		</div>
+	{% endif %}
+	{% if project.selected and show_results() %}
+		<div class="notification is-warning has-text-centered is-hidden-desktop">
+			<h1 class="title is-5">
+				<img src="/assets/img/icons/medal-dark.svg" alt="" class="image is-inline" style="width: 25px;margin-bottom: -8px;">
+				¡Seleccionado!
+			</h1>
+		</div>
+	{% endif %}
+			<h1 class="title is-5">Presenta</h1>
+			<h1 class="subtitle is-6 is-spaced">{{project.author_names}} {{project.author_surnames}}</h1>
+	{% if project.organization_name %}
+		<h1 class="title is-5">Nombre de la organización</h1>
+		<h1 class="subtitle is-6 is-spaced">{{project.organization_name}}</h1>
+		<h1 class="title is-5">Dirección</h1>
+		<h1 class="subtitle is-6">{{project.organization_address}}</h1>
+	{% endif %}
+	<div class="notification is-primary has-text-centered">
+		<p class="">
+			{% if options()['enable-facebook-sharer'] %}
+				<a href="javascript:shareOnFacebook()">
+					<i class="fab fa-facebook fa-2x fa-fw"></i>
+				</a>
+			{% endif %}
+			<a href="https://twitter.com/intent/tweet?text=¡Este proyecto está participando del Presupuesto Participativo {{options()['budget-title']}}! ¡Conocé, compartí, y votá!&url={{base_url() ~ path_for("showProject",{pro: project.id})}}">
+				<i class="fab fa-twitter fa-2x fa-fw"></i>
+			</a>
+		</p>
+	</div>
+	<div class="notification is-light has-text-centered is-hidden-desktop">
+		<h1 class="subtitle is-6">Presupuesto solicitado</h1>
+		<h1 class="title is-2">
+			$
+			{{project.budget_total|replace({".00" : ""})|number_format(0, ',', '.')}}
+		</h1>
+	</div>
+	<div class="notification is-light has-text-centered is-hidden-desktop">
+		<h1 class="subtitle is-6">Categoria</h1>
+		<h1 class="title is-3">
+			<i class="{{project.category.fontawesome_icon}}"></i>&nbsp;{{project.category.name}}
+		</h1>
+	</div>
+</div>

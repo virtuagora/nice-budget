@@ -1,0 +1,26 @@
+
+
+{% extends 'admin/master.twig' %}
+
+{% block section %}
+  <div class="tabs">
+    <ul>
+        <li><a href="{{path_for('showAdminUpdateProject',{'pro':proyecto.id})}}"><i class="fas fa-edit fa-lg"></i>&nbsp;Editar datos</a></li>
+        <li class="is-active"><a href="{{path_for('showAdminUpdateProjectUser',{'pro': proyecto.id})}}"><i class="fas fa-user-edit fa-lg"></i>&nbsp;Vincular usuario</a></li>
+        <li><a href="{{path_for('showAdminProjectFiles',{'pro': proyecto.id})}}"><i class="fas fa-upload fa-lg"></i>&nbsp;Archivos</a></li>
+        <li><a href="{{path_for('showAdminProjectImagen',{'pro': proyecto.id})}}"><i class="fas fa-image fa-lg"></i>&nbsp;Portada</a></li>
+        <li><a href="{{path_for('showAdminUpdateProjectFeasibility',{'pro':proyecto.id})}}"><i class="fas fa-clipboard-check fa-lg"></i>&nbsp;Factibilidad</a></li>
+        <li><a href="{{path_for('showAdminProjectJournal',{'pro':proyecto.id})}}"><i class="fas fa-history fa-lg"></i>&nbsp;Historial</a></li>
+    </ul>
+  </div>
+   <h1 class="title is-3"><i class="fas fa-list"></i>&nbsp;Vincular proyecto a un usuario</h1>
+      <p>Puede vincular un usuario con su proyecto si el proyecto se subio previo a que el ciudadano se registre en la plataforma.</p>
+      <hr>
+  <admin-edit-project-user
+  get-url="{{path_for('getUsuarioCiudadano')}}"
+  submit-url="{{path_for('updateProjectAuthor',{'pro': proyecto.id})}}"
+  :project="{{proyecto|json_encode}}"
+  >
+    {% include 'base/loading.twig' %}
+  </admin-edit-project-user>
+{% endblock %}

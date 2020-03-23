@@ -1,0 +1,32 @@
+{# {% set editable = ( is_state('upload-proposals') and proposals_available() ) ? 'true' : 'false'  %} #}
+{% set editable = ( is_state('upload-proposals') ) ? 'true' : 'false'  %}
+{% extends 'admin/master.twig' %}
+
+{% block section %}
+  <div class="tabs">
+    <ul>
+        <li><a href="{{path_for('showAdminUpdateProject',{'pro':proyecto.id})}}"><i class="fas fa-edit fa-lg"></i>&nbsp;Editar datos</a></li>
+        <li><a href="{{path_for('showAdminUpdateProjectUser',{'pro': proyecto.id})}}"><i class="fas fa-user-edit fa-lg"></i>&nbsp;Vincular usuario</a></li>
+        <li><a href="{{path_for('showAdminProjectFiles',{'pro': proyecto.id})}}"><i class="fas fa-upload fa-lg"></i>&nbsp;Archivos</a></li>
+        <li><a href="{{path_for('showAdminProjectImagen',{'pro': proyecto.id})}}"><i class="fas fa-image fa-lg"></i>&nbsp;Portada</a></li>
+        <li class="is-active"><a href="{{path_for('showAdminUpdateProjectFeasibility',{'pro':proyecto.id})}}"><i class="fas fa-clipboard-check fa-lg"></i>&nbsp;Factibilidad</a></li>
+        <li><a href="{{path_for('showAdminProjectJournal',{'pro':proyecto.id})}}"><i class="fas fa-history fa-lg"></i>&nbsp;Historial</a></li>
+    </ul>
+  </div>
+ <h1 class="title is-3">
+        <i class="fas fa-clipboard-check"></i>&nbsp;Factibilidad del proyecto
+      </h1>
+       <div class="content">
+        <p>
+          Para que el proyecto <b>{{proyecto.title}}</b> sea parte de la etapa de votación, debe ser factible que se pueda concretar. Si no lo es, entonces el proyecto no es factible, y se debe publicar un mensaje por parte de la administración declarando porque no es factible (Porque no pasa a ser parte de la votación)
+        </p>
+        <p>Si el proyecto <b>es factible</b>, debera declararle un código o identificador único (Ej: puede usar una combinacion del año y un numero que identifique el proyecto, o puede usar algun codigo interno de la organizacion, como el código de un tramite, etc).</p>
+        <p>Si el proyecto <b>no es factible</b> no participara</p>
+        <p>Si el proyecto <u>aún no tiene una sentencia de su factibilidad</u>, entonces marque como "Aún no evaluado"</p>
+        <p class="has-text-danger"><b>No deje proyectos sin factibilidad</b></p>
+      </div>
+      <hr>
+  <admin-edit-project-feasibility form-url="{{path_for('updateProjectFeasibility',{'pro':proyecto.id})}}" :existing-project="{{proyecto|json_encode}}" budget="{{options()['budget-limit']}}" :editable="{{editable}}">
+    {% include 'base/loading.twig' %}
+  </admin-edit-project-feasibility>
+{% endblock %}

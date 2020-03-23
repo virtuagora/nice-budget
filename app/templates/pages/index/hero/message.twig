@@ -1,0 +1,26 @@
+{% if is_state('pre-upload-proposals') %}
+  <h5 class="title is-2">Pronto vas a poder aportar tus ideas</h5>
+  <h5 class="subtitle is-4">A partir del {{options()['proposals-launch']|date("d/m/Y")}} a las {{options()['proposals-launch']|date("H:m")}} se abre el formulario para crear proyectos</h5>  
+  <countdown-to class="is-size-4 animated flash infinite slower" date="{{options()['proposals-launch']}}"></countdown-to>
+  <br>
+{% elseif is_state('upload-proposals') %}
+  <h5 class="title is-2">¡Participá del presupuesto participativo!</h5>
+  <h5 class="subtitle is-4">Hasta el {{options()['proposals-deadline']|date("d/m/Y")}} podés subir tus proyectos</h5>
+  <countdown-closing class="is-size-4 animated flash infinite slower" date="{{options()['proposals-deadline']}}" what="El formulario" style="margin-bottom: 30px;"></countdown-closing>
+{% elseif is_state('pre-vote') %}
+  <h5 class="title is-2">¡Pronto comienza la votación!</h5>
+  <h5 class="subtitle is-4">¡Conoce los proyectos que participaran antes de que comience la votación!</h5>
+  <countdown-to class="is-size-4 animated flash infinite slower" date="{{options()['vote-launch']}}" ></countdown-to>
+  <br>
+{% elseif is_state('vote') %}
+  <h5 class="title is-4">¡Esta abierta la votación de los proyectos!</h5>
+  <h5 class="subtitle is-5">¡Votá HOY por tus proyectos favoritos hoy!</h5>
+{% elseif is_state('pre-results') %}
+  <h5 class="title is-4">¡La votacion ha terminado!</h5>
+  <h5 class="subtitle is-5">¡Gracias a todos los que participaron del presupuesto participativo!<br>¡Muy pronto se publicarán los resultados!</h5>
+{% elseif is_state('results') %}
+  <h5 class="title is-4">¡Los resultados de la votación estan disponibles!</h5>
+  <h5 class="subtitle is-5">¡Ya podes conocer los proyectos ganadores del presupuesto participativo!</h5>
+{% else %}
+ 
+{% endif %}

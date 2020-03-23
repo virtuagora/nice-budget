@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Nice budget - Instalación</title>
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/nice-budget.css') }}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.css" integrity="sha256-PtBWX+v2TI0iuYI3rZrQft5kfd3ZkdPd8iVMZoE1rxE=" crossorigin="anonymous" />
+		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	</head>
+	<body>
+		<div id="vue" class="content-master">
+			<div class="hero is-primary">
+				<div class="hero-body">
+					<div class="container">
+						<div class="columns is-vcentered">
+							<div class="column is-narrow">
+								<img src="{{asset('img/nice-budget-white-logo.svg')}}" class="image" style="width: 200px;" alt="">
+							</div>
+							<div class="column has-text-right-desktop">
+								<h1 class="title is-1 is-marginless">Instalación</h1>
+								<h1 class="subtitle is-4 is-marginless">Nice budget</h1>
+								<p class="is-size-7">Un proyecto de Virtuagora, con la colaboración del SantaLab y Democracia en Red</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section">
+				<div class="container">
+					<installer>
+						{% include 'base/loading.twig' %}
+					</installer>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="{{asset('js/manifest.js')}}"></script>
+		<script type="text/javascript" src="{{asset('js/vendor.js')}}"></script>
+		<script type="text/javascript" src="{{asset('js/nice-budget-installer.js')}}"></script>
+	</body>
+</html>

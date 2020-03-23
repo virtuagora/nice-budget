@@ -1,0 +1,50 @@
+{% set show_footer = true %}
+{% set show_navbar = true %}
+{# set body_class = '' #}
+
+{% block title %}Consultas y preguntas frecuentes{% endblock %}
+
+{% extends 'master.twig' %}
+
+{% block body %}
+  <div class="hero is-dark is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-2">Preguntas frecuentes</h1>
+        <h1 class="subtitle is-5">Respondemos a las preguntas frecuentes sobre el Presupuesto Participativo y la plataforma</h1>
+      </div>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+      <div class="column is-3">
+          <h1 class="title is-4">Indice</h1>
+          <div class="content">
+            <ul>
+            {% for theBlock in blocks %}
+              <li><a href="#q{{theBlock.order}}">{{theBlock.title}}</a></li>
+            {% endfor %}
+            </ul>
+          </div>
+          <hr>
+          <div class="message is-primary">
+            <div class="message-body has-text-centered">
+              Esta página la construimos entre todos. Envianos tus consultas que no encuentres en esta sección.</a>
+            </div>
+          </div>
+      </div>
+        <div class="column is-9">
+          {% for theBlock in blocks %}
+          <h3 id="q{{theBlock.order}}" class="title is-4 has-text-primary"><i class="fas fa-arrow-right"></i>&nbsp;&nbsp;{{theBlock.title}}</h3>
+          <div class="content">
+            {{theBlock.markdown|markdown_to_html}}
+          </div>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
