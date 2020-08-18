@@ -1,4 +1,4 @@
-![Image description](docs/assets/nice-budget-logo.png)
+![Image description](docs/assets/iris-budget-logo.png)
 
 *By [Virtuágora](https://virtuagora.org). With the collaboration of [Democracia en Red](https://democraciaenred.org) & SantaLab (Laboratorio de participación ciudadana de Santa Fe)*
 
