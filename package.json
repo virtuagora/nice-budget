@@ -34,7 +34,7 @@
     "@babel/preset-env": "^7.8.3",
     "@chenfengyuan/vue-qrcode": "^1.0.2",
     "animate.css": "^3.7.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "buefy": "^0.8.10",
     "bulma": "^0.7.4",
     "chart.js": "^2.7.2",
